@@ -1,7 +1,7 @@
 //desafio
 
 //declaracion de variables globales
-alert("             Bienvenido"+
+alert("             Bienvenido a Room for Rent"+
     "\n A continuacion le solicitaremos sus datos"+
     "\n para poder iniciar la operacion, gracias!");
 
@@ -11,7 +11,7 @@ const requestName = () => {
         alert("error");
         name = prompt("Debe ingresar su Nombre")
     }
-    return name
+    return name;
 }
 
 const requestSurname = () => {
@@ -20,23 +20,81 @@ const requestSurname = () => {
         alert("error");
         surname = prompt("Debe ingresar su Apellido");
     }
-    return surname
+    return surname;
 }
-
-const requestBudget = () => {
-    let budget = (prompt("Ingrese su presupuesto"));
-    while ((isNaN( budget))|| (budget ==="")){
-            alert("error");
-            budget = (prompt("vuelva a ingresar su presupuesto"));
-        }
-        return parseInt(budget)
-}
-
 
 let name1 =requestName()
 let surname1 = requestSurname()
-let budget1 = requestBudget()
-alert("Bienvenido "+ name1+" " + surname1+" !!!"+"\n"+"Usted cuenta con un presupuesto de: "+ budget1 + "- pesos");
+
+
+alert("Bienvenido a RFR!!!" + "\n"+ name1+" "+ surname1+
+                        "\nYa puede selecionar su habitacion y definir el numero de dias que la necesita");
+let room;
+const selectRoom = () =>{
+    room = prompt("-Seleccione una Habitacion-"+"\nLe recordamos las opciones disponibles:"+
+                        "\nroom1, "+"room2, "+"room3, "+"room4, "+"room5, "+"room6, "
+                        +"\nEn caso de anular operacion digite: "+ "esc");
+                        
+    while((room === "")|| (!isNaN(room))){
+        alert("Seleccione una opcion Valida");
+        room = prompt("-Seleccione una Habitacion-"+"\nLe recordamos las opciones disponibles:"+
+        "\nroom1, "+"room2, "+"room3, "+"room4, "+"room5, "+"room6, "
+        +"En caso de anular la operacion digite: "+ "esc");
+    }
+    let cost;
+    switch(room){
+        case "room1":
+        cost = 50;
+        break;
+        case "room2":
+        cost = 55;
+        break;
+        case "room3":
+        cost = 45;
+        break;
+        case "room4":
+        cost = 30;
+        break;
+        case "room5":
+        cost = 25;
+        break;
+        case "room6":
+        cost = 60;
+        break;
+        case "esc":
+        alert("Operacion Cancelada");
+        break;
+        default:
+            alert("Debe Selecionar una habitacion");
+            room = prompt("Seleccione una Habitacion");
+        }
+    return cost;
+}
+
+    const requestQDays = () => {
+        let qDays = (prompt("Ingrese la cantidad de dias que requiere la habitacion"));
+        while ((isNaN( qDays))|| (qDays ==="")){
+                alert("error");
+                qDays = (prompt("Ingreso invalido, debe ingresar el nro de dias que requiere la habitacion"));
+            }
+            return parseInt(qDays)
+    }
+
+    let cost1 = selectRoom();
+    let qDays1 = requestQDays();
+
+    alert("Usted ha selecionado la habitacion: " + room+
+        "\nEl $ de la hab. seleccionada por dia es de: " + cost1+"-  Euros"+
+        "\nLa cantidad de dias solicitados son: "+ qDays1);
+
+        
+const totalAmount = (precio,cantidad)=>{
+    total += precio * cantidad;
+}
+
+totalAmount(selectRoom(), requestQDays());
+alert("El monto total ha abonar es de:"+ total);
+
 
 
 // if ((entrada >= 0) && ( entrada <= 1000)) {
