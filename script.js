@@ -28,7 +28,7 @@ let surname1 = requestSurname()
 
 
 alert("Bienvenido a RFR!!!" + "\n"+ name1+" "+ surname1+
-                        "\nYa puede selecionar su habitacion y definir el numero de dias que la necesita");
+                        "\nYa puede selecionar su habitacion y definir la cantidad de dias que la necesita.");
 let room;
 const selectRoom = () =>{
     room = prompt("-Seleccione una Habitacion-"+"\nLe recordamos las opciones disponibles:"+
@@ -71,29 +71,53 @@ const selectRoom = () =>{
     return cost;
 }
 
-    const requestQDays = () => {
-        let qDays = (prompt("Ingrese la cantidad de dias que requiere la habitacion"));
-        while ((isNaN( qDays))|| (qDays ==="")){
-                alert("error");
-                qDays = (prompt("Ingreso invalido, debe ingresar el nro de dias que requiere la habitacion"));
-            }
-            return parseInt(qDays)
-    }
+const requestQDays = () => {
+    let qDays = prompt("Ingrese la cantidad de dias que requiere la habitacion");
+    while ((isNaN( qDays))|| (qDays ==="")){
+            alert("error");
+            qDays = prompt("Ingreso invalido, debe ingresar el nro de dias que requiere la habitacion");
+        }
+        return parseInt(qDays)
+}
 
-    let cost1 = selectRoom();
-    let qDays1 = requestQDays();
+let cost1 = selectRoom();
+let qDays1 = requestQDays();
 
-    alert("Usted ha selecionado la habitacion: " + room+
+alert("Usted ha selecionado la habitacion: " + room+
         "\nEl $ de la hab. seleccionada por dia es de: " + cost1+"-  Euros"+
         "\nLa cantidad de dias solicitados son: "+ qDays1);
 
-        
-const totalAmount = (precio,cantidad)=>{
-    total += precio * cantidad;
-}
 
-totalAmount(selectRoom(), requestQDays());
-alert("El monto total ha abonar es de:"+ total);
+let subTotal = 0;    
+
+const subTotalAmount = (A,B) => {
+    subTotal += A * B;
+    alert("El monto total ha abonar es de: "+ subTotal);
+}
+subTotalAmount(cost1, qDays1);
+
+let tax= 0;
+let gap=0.1
+const taxAmount = (c,d) => {
+    tax += c * d;
+    alert("La comision adicional por la operacion es de: "+ tax);
+}
+taxAmount(subTotal, gap);
+
+let total = 0;
+const totalAmount = (A,B) => {
+    total += A + B;
+    alert("La operacion total da: "+ total);
+}
+totalAmount(subTotal, tax);
+
+alert("En resumen usted realizo la siguiente seleccion:"+
+    "\nHabitacion seleccionada: "+room+
+    "\nPrecio de la habxdia: "+cost1+
+    "\nCantidad de dias Selecionados: "+qDays1+
+    "\nRecargo de la pagina: "+tax+
+    "\nMonto total ha Abonar: " +total )
+
 
 
 
