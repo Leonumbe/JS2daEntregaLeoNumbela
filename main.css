@@ -176,9 +176,20 @@ section{
 .room .room-content .card .box:hover .head{
   color:#353d45
 } 
+.room .room-content .card .box:hover .price{
+  color: crimson;
+}
 .room .room-content .card .box:hover .btn{
   color:crimson;
 } 
+.room .room-content .card .box .price{
+  color: yellow;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+
 .room .room-content .card .box .btn{
   display: inline-block;
   color: #fff;
